@@ -1251,7 +1251,7 @@
             <av:Size x:Key="ShapeSize">200,66</av:Size>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Sequence DisplayName="Correo" sap:VirtualizedContainerService.HintSize="454,918" sap2010:WorkflowViewState.IdRef="Sequence_54">
+        <Sequence DisplayName="Correo" sap:VirtualizedContainerService.HintSize="454,1103" sap2010:WorkflowViewState.IdRef="Sequence_54">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Default="luzamparo.infantasochoa@gmail.com" Name="in_UsuarioCorreo" />
             <Variable x:TypeArguments="x:String" Default="amparito2021" Name="in_Contrasenia" />
@@ -1264,26 +1264,35 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <ui:LogMessage DisplayName="Registrar mensaje" sap:VirtualizedContainerService.HintSize="412,91" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;INI&quot;]" />
-          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="ESTE CORREO ES DE PRUEBA; RPA" DisplayName="Enviar mensaje de correo SMTP" Email="[in_UsuarioCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="412,145" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="[in_Contrasenia]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="CORREO DE ROBOT DE PLATZI" To="[in_UsuarioCorreo]">
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="ESTE CORREO ES DE PRUEBA; RPA" DisplayName="Enviar mensaje de correo SMTP" Email="[in_UsuarioCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="412,145" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="False" Password="[in_Contrasenia]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="CORREO DE ROBOT DE KIWILOCO" To="[in_UsuarioCorreo]">
             <ui:SendMail.Files>
               <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
             </ui:SendMail.Files>
           </ui:SendMail>
           <ui:GetIMAPMailMessages SecurePassword="{x:Null}" TimeoutMS="{x:Null}" DeleteMessages="False" DisplayName="Obtener mensajes de correo IMAP" Email="[in_UsuarioCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="412,22" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_1" MailFolder="Inbox" MarkAsRead="False" Messages="[lst_correosencontrados]" OnlyUnreadMessages="True" Password="[in_Contrasenia]" Port="993" SecureConnection="Auto" Server="imap.gmail.com" Top="30" />
           <ui:LogMessage DisplayName="Registrar mensaje" sap:VirtualizedContainerService.HintSize="412,91" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Info" Message="[&quot;CORRESO ENCONTRADOS: &quot;+lst_correosencontrados.Count.ToString]" />
-          <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="412,317" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[lst_correosencontrados]">
+          <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="Para cada" sap:VirtualizedContainerService.HintSize="412,502" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[lst_correosencontrados]">
             <ui:ForEach.Body>
               <ActivityAction x:TypeArguments="snm:MailMessage">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="Correo" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,183" sap2010:WorkflowViewState.IdRef="Sequence_55">
+                <Sequence DisplayName="Cuerpo" sap:VirtualizedContainerService.HintSize="376,368" sap2010:WorkflowViewState.IdRef="Sequence_55">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <ui:LogMessage DisplayName="Registrar mensaje" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info" Message="[Correo.Subject + Environment.NewLine + Correo.Body + Environment.NewLine+ Correo.Headers(&quot;DATE&quot;)]" />
+                  <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" From="{x:Null}" Name="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" Body="re ESTE CORREO ES DE PRUEBA; RPA" DisplayName="Enviar mensaje de correo SMTP" Email="[in_UsuarioCorreo]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,145" sap2010:WorkflowViewState.IdRef="SendMail_2" IsBodyHtml="True" MailMessage="[Correo]" Password="[in_Contrasenia]" Port="465" SecureConnection="Auto" Server="smtp.gmail.com" Subject="RE:CORREO DE ROBOT DE PLATZI" To="[in_UsuarioCorreo]">
+                    <ui:SendMail.Files>
+                      <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                        <InArgument x:TypeArguments="x:String">
+                          <Literal x:TypeArguments="x:String">D:\UIPath\CursoRPAPlatzi\Files\CursosPlatzi.xlsx</Literal>
+                        </InArgument>
+                      </scg:List>
+                    </ui:SendMail.Files>
+                  </ui:SendMail>
                 </Sequence>
               </ActivityAction>
             </ui:ForEach.Body>
